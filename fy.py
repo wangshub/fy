@@ -10,6 +10,7 @@ import huepy
 import pangu
 import requests
 import xmltodict
+import clipboard
 from googletrans import Translator
 from pony import orm
 
@@ -127,6 +128,9 @@ def get_parser() -> Parser:
         "-R", "--reset", action="store_true", help="reset fy configuration."
     )
     parser.add_argument(
+        "-c", "--clipboard", action="store_true", help="translate text from clipboard."
+    )
+    parser.add_argument(
         "-v",
         "--version",
         action="store_true",
@@ -143,6 +147,11 @@ def command_line_runner():
 
     if args["version"]:
         print(huepy.cyan("fy " + __version__))
+        return
+    
+    if args["clipboard"]:
+        words = clipboard.paste().replace("\n", ' ')
+        run(words)
         return
 
     if args["reset"]:

@@ -29,6 +29,7 @@ setup(
         "pony",
         "googletrans",
         "pangu",
+        "clipboard"
     ],
     classifiers=[
         "Development Status :: 4 - Beta",
